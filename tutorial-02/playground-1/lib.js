@@ -1,6 +1,7 @@
 // Don't modify this file. You are only allowed to modify 'main.js'.
 var yearInput = document.getElementById("year-input");
 var result = document.getElementById("result");
+var ITEM_PRICE = 273.44;  // in dollars.
 yearInput.onkeyup = function() {
   var years = parseInt(this.value);
   console.log(years);
@@ -8,9 +9,12 @@ yearInput.onkeyup = function() {
     result.innerHTML = "Please enter valid number of years.";
     return;
   }
-  if (shouldGiveDiscount(years)) {
-    result.innerHTML = "You are our valued member! We give you 15% discount on this purchase.";
+  var discount = calculateMemberDiscount(years);
+  if (discount > 0) {
+    result.innerHTML = "<p>You are our valued member! We are giving you " + discount + "% discount on this purchase.</p>";
   } else {
-    result.innerHTML = "Sorry, we only give discount to members with membership of above 3 years old.";
+    result.innerHTML = "<p>Sorry, we do not give any discount to non-members.</p>";
   }
+  var finalPrice = ((100 - discount) / 100 * ITEM_PRICE).toFixed(2);
+  result.innerHTML += "<p>Final price: $" + finalPrice + "</p>";
 }
