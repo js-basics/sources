@@ -1,3 +1,4 @@
+// Don't modify this file. You are only allowed to modify 'main.js'.
 var yearInput = document.getElementById("year-input");
 var result = document.getElementById("result");
 yearInput.onkeyup = function() {
